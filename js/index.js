@@ -63,6 +63,7 @@ var app = new Vue({
             self = this;
             var lastPlayerID = this.currPlayer.ID;
             this.currPlayer.ID = this.sound2.play();
+            this.deck2.playing = true;
             this.currPlayer.deck = this.deck2;
             this.sound1.fade(1, 0.2, 5000, lastPlayerID);
             this.sound1.on("fade", function () {
@@ -70,16 +71,17 @@ var app = new Vue({
                self.sound1.stop(self.lastPlayerID);
                self.deck1.playing = false;
             });
-         } else if (this.sound2.playing()) {
+         } else {//if (this.sound2.playing()) {
             self = this;
             var lastPlayerID = this.currPlayer.ID;
             this.currPlayer.ID = this.sound1.play();
+            this.deck1.playing = true;
             this.currPlayer.deck = this.deck1;
             this.sound2.fade(1, 0.2, 5000, lastPlayerID);
             this.sound2.on("fade", function () {
                console.log("Finished! " + lastPlayerID);
                self.sound2.stop(self.lastPlayerID);
-               self.deck2.playing = true;
+               self.deck2.playing = false;
             });
          }
          // console.log(this.player2)
@@ -94,17 +96,16 @@ var app = new Vue({
             this.sound1 = new Howl({
                src: [this.deck1.src]
             });
-            console.log('dek1:' + this.deck1.playing)
+            console.log('dek1 playing?' + this.deck1.playing)
          } else if (!this.deck2.playing) {
-            // this.deck2= {
-            //    name: "Matias Damasio - Voltei com Ela",
-            //    src:
-            //       "audio/Matias Damasio - Voltei com Ela-pRYrXfIlf58.mp3",
-            //    playing: false,
-            // }
-            // this.sound2 = new Howl({
-            //    src: [this.deck2.src]
-            // });
+            this.deck1 = {
+               name: song.name,
+               src: song.src,
+               playing: false,
+            }
+            this.sound1 = new Howl({
+               src: [this.deck1.src]
+            });
             console.log('dek2 playing?' + this.deck2.playing)
          }
       },
