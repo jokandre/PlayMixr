@@ -98,13 +98,13 @@ var app = new Vue({
             });
             console.log('dek1 playing?' + this.deck1.playing)
          } else if (!this.deck2.playing) {
-            this.deck1 = {
+            this.deck2 = {
                name: song.name,
                src: song.src,
                playing: false,
             }
-            this.sound1 = new Howl({
-               src: [this.deck1.src]
+            this.sound2 = new Howl({
+               src: [this.deck2.src]
             });
             console.log('dek2 playing?' + this.deck2.playing)
          }
