@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Howler sync songs</title>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.12/howler.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue-router/2.7.0/vue-router.js'></script>
+
+</head>
+
+<body>
+
+  <!-- <button onclick="myFunction()">Try it</button> -->
+  <div id="app">
+    <h1> {{ msg }} </h1>
+
+    <div id="#currentSongInfo" v-if="currPlayer.deck">
+      <h4>ID: {{currPlayer.ID}}</h4>
+      <h4>Name: {{currPlayer.deck.name}}</h4>
+      <!--       <h4>{{currPlayer.deck.name}}</h4>
+      <h4>{{currPlayer.deck.name}}</h4> -->
+    </div>
+
+    <button v-on:click="playSong">Play</button>
+    <button v-on:click="stopSong">Stop</button>
+    <button v-on:click="transitionSong">Transition</button>
+    <button v-on:click="updateDeck">Update deck</button>
+    <button v-on:click="getNewSongs">Get Pool</button>
+
+    <!-- <tr v-for="song in songpool" :key="song.name">
+      <td>
+         <button v-on:click="updateDeck">Song Name</button>
+      </td>
+   </tr> -->
+
+   <div id="element">
+
+    <div v-if="songpool.length">Pick a song</div>
+    <div v-for="(item, index) in songpool">
+        <!-- {{item.name}} -->
+        <button @click="updateDeck(item)">{{item.name}}</button>
+
+        <!-- {{item.key}}<button @click="remove(index)">remove</button> -->
+    </div>
+  </div>
+   
+
+  </div>
+
+  <script src="js/index.js"></script>
+
+</body>
+
+</html>
