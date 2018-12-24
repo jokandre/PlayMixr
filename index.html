@@ -17,56 +17,55 @@
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
     crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
     crossorigin="anonymous">
-    <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
+  <div id="app">
+    <div class="container">
+      <h1> {{ msg }} </h1>
 
-  <!-- <button onclick="myFunction()">Try it</button> -->
-  <div id="app" class="container">
-    <h1> {{ msg }} </h1>
+      <div id="#currentSongInfo" v-if="currPlayer.deck">
+        <h4>ID: {{currPlayer.ID}}</h4>
+        <h4>Name: {{currPlayer.deck.name}}</h4>
+        <!-- <h5>Countdown: {{playerCountdown}}</h5> -->
 
-    <div id="#currentSongInfo" v-if="currPlayer.deck">
-      <h4>ID: {{currPlayer.ID}}</h4>
-      <h4>Name: {{currPlayer.deck.name}}</h4>
-      <!-- <h5>Countdown: {{playerCountdown}}</h5> -->
-
-      <!--       <h4>{{currPlayer.deck.name}}</h4>
+        <!--       <h4>{{currPlayer.deck.name}}</h4>
       <h4>{{currPlayer.deck.name}}</h4> -->
-    </div>
+      </div>
 
-    <button class="btn btn-outline-primary" v-on:click="playSong">Play</button>
-    <button class="btn btn-outline-primary" v-on:click="stopSong">Stop</button>
-    <button class="btn btn-outline-primary" v-on:click="transitionSong" :class="{ disabled:!canTransition}" :disabled="!canTransition" >Transition</button>  
-    <!-- <button v-on:click="updateDeck">Update deck</button> -->
-    <button class="btn btn-outline-primary" v-on:click="getNewSongs">Get Pool</button>
+      <button class="btn btn-outline-primary" v-on:click="playSong">Play</button>
+      <button class="btn btn-outline-primary" v-on:click="stopSong">Stop</button>
+      <button class="btn btn-outline-primary" v-on:click="transitionSong" :class="{ disabled:!canTransition}" :disabled="!canTransition">Transition</button>
+      <!-- <button v-on:click="updateDeck">Update deck</button> -->
+      <button class="btn btn-outline-primary" v-on:click="getNewSongs">Get Pool</button>
 
-    <!-- <tr v-for="song in songpool" :key="song.name">
+      <!-- <tr v-for="song in songpool" :key="song.name">
       <td>
          <button v-on:click="updateDeck">Song Name</button>
       </td>
    </tr> -->
 
-    <div id="element">
+      <div id="element">
 
-      <div v-if="songpool.length">Pick a song</div>
-      <div v-for="(item, index) in songpool">
-        <!-- {{item.name}} -->
-        <button class="btn btn-outline-info" @click="updateDeck(item)">{{item.name}}</button>
+        <div v-if="songpool.length">Pick a song</div>
+        <div v-for="(item, index) in songpool">
+          <!-- {{item.name}} -->
+          <button class="btn btn-outline-info" @click="updateDeck(item)">{{item.name}}</button>
 
-        <!-- {{item.key}}<button @click="remove(index)">remove</button> -->
+          <!-- {{item.key}}<button @click="remove(index)">remove</button> -->
+        </div>
       </div>
-    </div>
-    
-
-  </div>
-  <div class="footer navbar-fixed-bottom">
+    </div> <!-- end main container-->
+    <div class="footer navbar-fixed-bottom">
       <div class="progress">
         <div class="progress-bar" v-bind:style="{ width:playerCountdown*100+'%'}"></div>
       </div>
     </div>
+
+  </div><!-- End App -->
 
   <script src="js/index.js"></script>
 
