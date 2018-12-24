@@ -5,30 +5,43 @@
   <meta charset="UTF-8">
   <title>Howler sync songs</title>
 
+
   <script src='https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.12/howler.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue-router/2.7.0/vue-router.js'></script>
-
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
 
   <!-- <button onclick="myFunction()">Try it</button> -->
-  <div id="app">
+  <div id="app" class="container">
     <h1> {{ msg }} </h1>
 
     <div id="#currentSongInfo" v-if="currPlayer.deck">
       <h4>ID: {{currPlayer.ID}}</h4>
       <h4>Name: {{currPlayer.deck.name}}</h4>
+      <!-- <h5>Countdown: {{playerCountdown}}</h5> -->
+
       <!--       <h4>{{currPlayer.deck.name}}</h4>
       <h4>{{currPlayer.deck.name}}</h4> -->
     </div>
 
-    <button v-on:click="playSong">Play</button>
-    <button v-on:click="stopSong">Stop</button>
-    <button v-on:click="transitionSong">Transition</button>
+    <button class="btn btn-outline-primary" v-on:click="playSong">Play</button>
+    <button class="btn btn-outline-primary" v-on:click="stopSong">Stop</button>
+    <button class="btn btn-outline-primary" v-on:click="transitionSong" :class="{ disabled:!canTransition}" :disabled="!canTransition" >Transition</button>  
     <!-- <button v-on:click="updateDeck">Update deck</button> -->
-    <button v-on:click="getNewSongs">Get Pool</button>
+    <button class="btn btn-outline-primary" v-on:click="getNewSongs">Get Pool</button>
 
     <!-- <tr v-for="song in songpool" :key="song.name">
       <td>
@@ -36,19 +49,24 @@
       </td>
    </tr> -->
 
-   <div id="element">
+    <div id="element">
 
-    <div v-if="songpool.length">Pick a song</div>
-    <div v-for="(item, index) in songpool">
+      <div v-if="songpool.length">Pick a song</div>
+      <div v-for="(item, index) in songpool">
         <!-- {{item.name}} -->
-        <button @click="updateDeck(item)">{{item.name}}</button>
+        <button class="btn btn-outline-info" @click="updateDeck(item)">{{item.name}}</button>
 
         <!-- {{item.key}}<button @click="remove(index)">remove</button> -->
+      </div>
     </div>
-  </div>
-   
+    
 
   </div>
+  <div class="footer navbar-fixed-bottom">
+      <div class="progress">
+        <div class="progress-bar" v-bind:style="{ width:playerCountdown*100+'%'}"></div>
+      </div>
+    </div>
 
   <script src="js/index.js"></script>
 
