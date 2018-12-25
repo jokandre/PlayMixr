@@ -53,7 +53,7 @@
         <div v-if="songpool.length">Pick a song</div>
         <div v-for="(item, index) in songpool">
           <!-- {{item.name}} -->
-          <button class="btn btn-outline-info" @click="updateDeck(item)">{{item.name}}</button>
+          <button class="btn btn-outline-info btn-round" @click="updateDeck(item)">{{item.name}}</button>
 
           <!-- {{item.key}}<button @click="remove(index)">remove</button> -->
         </div>
