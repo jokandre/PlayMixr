@@ -38,6 +38,10 @@ var app = new Vue({
       playerCountdown: 0,
       atimer: null,
       canTransition: false, //since fade is not triggered if nothing is playing 
+
+      //visualization??
+      analyser: null,
+      dataArray: null,
    },
    created: function () {
       this.sound1 = new Howl({
@@ -55,6 +59,9 @@ var app = new Vue({
          }
       });
 
+
+
+
    },
    methods: {
       playSong: function () {
@@ -63,6 +70,7 @@ var app = new Vue({
          this.deck1.playing = true;
          this.currPlayer.deck = this.deck1;
          this.canTransition = true;
+
       },
       stopSong: function () {
          this.sound1.stop(this.currPlayer.ID);
@@ -70,9 +78,9 @@ var app = new Vue({
          clearInterval(self.atimer)
       },
       transitionSong: function () {
+         self = this;
          if (this.deck1.playing) {
             // Transition: 1 to 2
-            self = this;
             self.canTransition = false;
             var lastPlayerID = this.currPlayer.ID;
             this.currPlayer.ID = this.sound2.play('seg1');
@@ -103,8 +111,8 @@ var app = new Vue({
                }, 1000);
             });
          } else {//if (this.sound2.playing()) {
-            self = this;
-            self.canTransition=false;
+            // Transition: 2 to 1
+            self.canTransition = false;
             var lastPlayerID = this.currPlayer.ID;
             this.currPlayer.ID = this.sound1.play('seg1');
             this.deck1.playing = true;
@@ -214,7 +222,7 @@ var app = new Vue({
                src:
                   "audio/Matias Damasio - Voltei com Ela-pRYrXfIlf58.mp3",
                times: [21000, 49000, 99000, 215000],
-               bpm: 193
+               // bpm: 193
             },
 
             {
@@ -222,15 +230,15 @@ var app = new Vue({
                src:
                   "audio/Filho do Zua - Ditado Ft. Carla Prata (Video Oficial)-pZWZ48TMLcQ.mp3",
                times: [11000, 52000, 72000, 95000, 207000],
-               bpm: 186
+               // bpm: 186
             },
 
             {
                name: "Cubitaa Tks - Me Fala",
                src:
                   "audio/Cubitaa Tks - Me Fala-dGhhm-WmKO4.mp3",
-               times: [19000, 37000, 97000, 146000],
-               bpm: 195
+               times: [37000, 97000, 146000], //19000,
+               // bpm: 195
             }
          ]
 
@@ -239,6 +247,27 @@ var app = new Vue({
 
    }
 });
+
+//Visualization??
+// Create an analyser node in the Howler WebAudio context
+app.analyser = Howler.ctx.createAnalyser(),
+// Connect the masterGain -> analyser (disconnecting masterGain -> destination)
+Howler.masterGain.connect(app.analyser);
+
+app.analyser.connect(Howler.ctx.destination);
+// Creating output array (according to documentation https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Visualizations_with_Web_Audio_API)
+//   this.analyser.fftSize = 2048;
+var bufferLength = app.analyser.frequencyBinCount;
+var dataArray = new Uint8Array(bufferLength);
+
+// Get the Data array
+app.analyser.getByteTimeDomainData(dataArray);
+
+// Display array on time each 3 sec (just to debug)
+// setInterval(function () {
+//    app.analyser.getByteTimeDomainData(dataArray);
+//    console.dir(dataArray);
+// }, 3000);
 
 // function myFunction() {
 //    var x = document.createElement("AUDIO");
