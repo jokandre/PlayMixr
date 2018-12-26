@@ -239,7 +239,57 @@ var app = new Vue({
                   "audio/Cubitaa Tks - Me Fala-dGhhm-WmKO4.mp3",
                times: [37000, 97000, 146000], //19000,
                // bpm: 195
-            }
+            },
+//////                        //////
+            {
+               name: "Landrick - Fila Da Goda",
+               src:
+                  "audio/Landrick - Fila Da Goda (UHD 4K)-ozyKQMBhZeA.mp3",
+               times: [24000, 63000, 199000], //19000,
+               // bpm: 195
+            },
+            {
+               name: "Landrick - Kuyuyu",
+               src:
+                  "audio/Landrick - Kuyuyu  (Video Oficial)-ggk1HvYRci4.mp3",
+               times: [37000, 41000, 84000, 167000], //19000,
+               // bpm: 195
+            },
+            {
+               name: "LOONY JOHNSON FT LANDRICK - VOU SER TEU",
+               src:
+                  "audio/LOONY JOHNSON FT LANDRICK - VOU SER TEU [ OFFICIAL VIDEO ]-nuCPYD-QvFc.mp3",
+               times: [53000, 82000, 209000], //19000,
+               // bpm: 195
+            },
+            {
+               name: "Messias Maricoa - Faz Questão",
+               src:
+                  "audio/Messias Maricoa - Faz Questão _ Official Video-DzJR_KbfT7s.mp3",
+               times: [21000, 61000, 166000], //19000,
+               // bpm: 195
+            },
+            {
+               name: "Nelson Freitas - Miúda Linda",
+               src:
+                  "audio/Nelson Freitas - Miúda Linda-cordADXcng0.mp3",
+               times: [21000, 63000, 87000, 169000], //19000,
+               // bpm: 195
+            },
+            {
+               name: "Yudi Fox -Logo eu",
+               src:
+                  "audio/Yudi Fox -Logo eu  Official Audio Music-sMZrNVlNzBw.mp3",
+               times: [20000, 62000, 157000], //19000,
+               // bpm: 195
+            },
+            {
+               name: "Aya Nakamura - Djadja",
+               src:
+                  "audio/Aya Nakamura - Djadja (Clip officiel)-iPGgnzc34tY.mp3",
+               times: [10000, 30000, 127000], //19000,
+               // bpm: 195
+            },
          ]
 
          this.songpool = songlist;

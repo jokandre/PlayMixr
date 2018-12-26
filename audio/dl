@@ -1,1 +1,9 @@
 youtube-dl --extract-audio --audio-format mp3 <video url>
+
+youtube-dl --extract-audio --audio-format mp3 https://www.youtube.com/watch?v=cordADXcng0
+youtube-dl --extract-audio --audio-format mp3 https://www.youtube.com/watch?v=ozyKQMBhZeA
+youtube-dl --extract-audio --audio-format mp3 https://www.youtube.com/watch?v=nuCPYD-QvFc
+youtube-dl --extract-audio --audio-format mp3 https://www.youtube.com/watch?v=ggk1HvYRci4
+youtube-dl --extract-audio --audio-format mp3 https://www.youtube.com/watch?v=iPGgnzc34tY
+youtube-dl --extract-audio --audio-format mp3 https://www.youtube.com/watch?v=DzJR_KbfT7s
+youtube-dl --extract-audio --audio-format mp3 https://www.youtube.com/watch?v=sMZrNVlNzBw
